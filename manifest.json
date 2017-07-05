@@ -2,6 +2,7 @@
   "name": "Duke-RateMyProfessors",
   "description": "View professor ratings when registering for classes",
   "version": "0.1",
+  "manifest_version": 2,
   "content_scripts": [ {
     "js": [ "jquery.min.js", "script.js" ],
     "matches": [ "http://*/*", "https://*/*"]
