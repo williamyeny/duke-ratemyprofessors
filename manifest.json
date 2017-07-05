@@ -1,6 +1,6 @@
  {
   "name": "Duke-RateMyProfessors",
-  "version": "1",
+  "version": "0.1",
   "description": "View professor ratings when registering for classes",
   "content_scripts": [ {
     "js": [ "jquery.min.js", "script.js" ],
