@@ -1,3 +1,5 @@
+//from: https://stackoverflow.com/questions/7699615/cross-domain-xmlhttprequest-using-background-pages
+
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
     if (request.action == "xhttp") {
         var xhttp = new XMLHttpRequest();
