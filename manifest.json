@@ -1,6 +1,6 @@
  {
   "name": "Duke-RateMyProfessors",
-  "description": "View professor ratings when registering for classes",
+  "description": "View professor ratings when registering for classes on DukeHub",
   "version": "0.1",
   "manifest_version": 2,
   "content_scripts": [ {
