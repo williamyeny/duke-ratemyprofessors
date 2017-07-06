@@ -3,12 +3,11 @@
   "description": "View professor ratings when registering for classes on DukeHub",
   "version": "0.1",
   "manifest_version": 2,
-
+  "permissions": [
+    "http://*mtvnservices.com"
+  ],
   "content_scripts": [ {
     "js": [ "jquery-3.2.1.min.js", "script.js" ],
-    "matches": ["*://*.duke.edu/*"],
-    "permissions": [
-    "tabs", "*://*.duke.edu/*"
-  ]
+    "matches": ["*://*.duke.edu/*"]
   }]
 }
