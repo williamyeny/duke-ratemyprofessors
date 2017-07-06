@@ -1,10 +1,14 @@
  {
-  "name": "Duke-RateMyProfessors",
+  "name": "Rate My Duke Professors",
   "description": "View professor ratings when registering for classes on DukeHub",
   "version": "0.1",
   "manifest_version": 2,
+
   "content_scripts": [ {
     "js": [ "jquery-3.2.1.min.js", "script.js" ],
-    "matches": [ "http://*/*", "https://*/*"]
+    "matches": ["*://*.duke.edu/*"],
+    "permissions": [
+    "tabs", "*://*.duke.edu/*"
+  ]
   }]
 }
