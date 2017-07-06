@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "permissions": [
     "activeTab",
-    "*://*.mtvnservices.com/"
+    "*://*.mtvnservices.com/*"
   ],
   "content_scripts": [ {
     "js": [ "jquery-3.2.1.min.js", "script.js" ],
