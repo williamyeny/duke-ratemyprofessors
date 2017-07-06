@@ -4,7 +4,7 @@
   "version": "0.1",
   "manifest_version": 2,
   "permissions": [
-    "http://*mtvnservices.com"
+    "http://*.mtvnservices.com"
   ],
   "content_scripts": [ {
     "js": [ "jquery-3.2.1.min.js", "script.js" ],
