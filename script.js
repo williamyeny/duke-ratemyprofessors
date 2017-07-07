@@ -1,7 +1,7 @@
 //INSTRUCTOR NAME IDS TAKE THIS FORM: DU_DERIVED_SS_DESCR100_2$[NUMBER]
 
 $(function() {
-  console.log("duke rmp loaded");
+  console.info("drmp: duke rmp loaded");
 
 
 
@@ -9,8 +9,18 @@ $(function() {
     console.info("iframe loaded");
       var targetNode = $("#ptifrmtgtframe").contents().find("body")[0];
       var observer = new MutationObserver(function(mutations) {
-        // For the sake of...observation...let's output the mutation to console to see how this all works
-        console.log(mutations);
+
+        mutations.forEach(function(mutation) {
+          //check if mutation added elements
+          if (mutation.type === "childList") {
+            console.info("drmp: DOM change occured in courses page")
+
+            //add ratings
+            var pname = $("#ptifrmtgtframe").contents().find("span[id*='DU_DERIVED_SS_DESCR100_2']").text();
+            console.info("drmp: professor name: " + pname);
+          }
+
+        });
       });
 
       // Notify me of everything!
