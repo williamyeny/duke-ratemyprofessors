@@ -15,39 +15,37 @@ $(function() {
           if (mutation.type === "childList") {
             console.info("drmp: DOM change occured in courses page")
 
-            //check if professor name is exposed
+            //loop through spans with professor name(s)
             var pspans = $("#ptifrmtgtframe").contents().find("span[id*='DU_DERIVED_SS_DESCR100_2']");
-            if (pspans.length > 0) {
-              console.info("drmp: found professor name(s)");
-              pspans.each(function(index) {
-                //get professor name(s)
-                var pname = $(this).text();
-                console.info("drmp: professor name: " + pname);
+            pspans.each(function(index) {
+              //get professor name(s)
+              var pname = $(this).text();
+              console.info("drmp: professor name: " + pname);
 
-                //check if professor is already rated
-                if (!$(this).is('[rated]')) {
-                  //modify professor name(s)
+              //check if professor is already rated
+              if (!$(this).is('[rated]')) {
+                //modify professor name(s)
 
-                  var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
-                  chrome.runtime.sendMessage({
-                      method: 'GET',
-                      action: 'xhttp',
-                      url: url,
-                  }, function(responseText) {
-                      console.log(responseText);
-                  });
-                  //tag element as "rated" so it does not infinite loop when a rating is added
-                  $(this).attr("rated", "");
-                  $(this).append(" W O O H O O ");
-                } else {
-                  console.info("drmp: there\'s already a rating!");
-                }
+                var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+                chrome.runtime.sendMessage({
+                    method: 'GET',
+                    action: 'xhttp',
+                    url: url,
+                }, function(responseText) {
+                    console.log(responseText);
+                });
+                //tag element as "rated" so it does not infinite loop when a rating is added
+                $(this).attr("rated", "");
+                $(this).append(" W O O H O O ");
+              } else {
+                console.info("drmp: there\'s already a rating!");
+              }
 
-              });
+            });
 
-              //prevent duplicate mutation detections
-              return false;
-            }
+            //prevent duplicate mutation detections
+            return false;
+
 
           }
 
