@@ -8,6 +8,6 @@ $(function() {
       action: 'xhttp',
       url: url,
   }, function(responseText) {
-      alert(responseText);
+      console.log(responseText);
   });
 })
