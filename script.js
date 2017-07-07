@@ -1,8 +1,9 @@
 $(function() {
   console.info("drmp: duke rmp loaded");
 
+  //ptifrmtgtframe: ID of the iframe holding the courses
   $("#ptifrmtgtframe").on("load", function() {
-    console.info("iframe loaded");
+    console.info("drmp: iframe loaded");
     var observer = new MutationObserver(function(mutations) {
 
       mutations.forEach(function(mutation) {
