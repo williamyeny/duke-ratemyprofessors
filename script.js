@@ -36,12 +36,13 @@ $(function() {
                 console.log(responseText);
                 var read = JSON.parse(responseText); 
                 console.log(read)
-                console.log("Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews."); 
+                var output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
+                console.log(output) 
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
             //tag element as "rated" so it does not infinite loop when a rating is added
             $(this).attr("rated", "");
-            $(this).append(" W O O H O O ");
+            $(this).append(output);
           } else {
             console.info("drmp: there\'s already a rating!");
           }
