@@ -14,6 +14,8 @@
 
   "content_scripts": [ {
     "js": [ "jquery-3.2.1.min.js", "script.js" ],
-    "matches": ["*://*.duke.edu/*"]
+    "css" : [ "drmp-style.css" ],
+    "matches": ["*://*.duke.edu/*"],
+    "all_frames": true
   }]
 }

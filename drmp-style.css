@@ -1,0 +1,25 @@
+.rating {
+  color:white;
+  font-weight: 800;
+  padding:3px;
+}
+
+.color-red {
+  background-color: red;
+}
+
+.color-yellow {
+  background-color:yellow;
+}
+
+.color-green {
+  background-color: green;
+}
+
+.not-found {
+  background-color:grey;
+}
+
+body {
+  background-color:black;
+}
