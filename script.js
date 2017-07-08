@@ -15,18 +15,17 @@ $(function() {
           //get professor name(s)
           var pname = $(this).text();
           var pname_list = pname.split(" "); 
-          var firstname =  pname_list[0]; 
-          var lastname = pname_list[pname_list.length-1]; 
+          var first_name =  pname_list[0]; 
+          var last_name = pname_list[pname_list.length-1]; 
           // what are best practices here? Should these be stored as variables?^ 
-          console.info("drmp: professor first-name: " + firstname + " last-name: " + lastname);
-
+          console.info("drmp: professor first-name: " + first_name + " last-name: " + last_name);
 
 
           //check if professor is already rated
           if (!$(this).is('[rated]')) {
             //modify professor name(s)
 
-            var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + firstname + "+" + lastname + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+            var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             chrome.runtime.sendMessage({
                 method: 'GET',
