@@ -29,19 +29,39 @@ $(function() {
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             chrome.runtime.sendMessage({
-                method: 'GET',
-                action: 'xhttp',
-                url: url,
+              method: 'GET',
+              action: 'xhttp',
+              url: url,
             }, function(responseText) {
-                console.log(responseText);
-                var read = JSON.parse(responseText);
-                console.log(read)
-                var output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
-                console.log(output)
+              console.log(responseText);
+              var read = JSON.parse(responseText);
+              console.log(read);
 
-                //inject to HTML
-                span.append(output);
-                // alert(responseText['response']['docs']['averageratingscore_rf'])
+              var rating_html;
+              //check if professor exists on rmp
+              if (read.response.docs.length > 0) {
+                //get rating
+                var rating = read.response.docs[0].averageratingscore_rf;
+                console.log(rating);
+
+                //determine color based on rating
+                var color;
+                if (rating > 3.4) {
+                  color="green";
+                } else if (rating > 2.5) {
+                  color="yellow";
+                } else {
+                  color="red";
+                }
+
+                rating_html = "<span class='rating color-" + color + "'>" + rating + "</span>"
+              } else {
+                rating_html = "<span class='rating not-found'>?</span>"
+              }
+              //inject to HTML
+              span.append(" " + rating_html);
+
+              // alert(responseText['response']['docs']['averageratingscore_rf'])
 
             });
             setTimeout(function() {
