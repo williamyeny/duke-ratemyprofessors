@@ -27,6 +27,8 @@ $(function() {
                 url: url,
             }, function(responseText) {
                 console.log(responseText);
+                JSON.parse(responseText); 
+                alert(responseText['response']['docs']['averageratingscore_rf'])
             });
             //tag element as "rated" so it does not infinite loop when a rating is added
             $(this).attr("rated", "");
