@@ -35,6 +35,7 @@ $(function() {
             }, function(responseText) {
                 console.log(responseText);
                 var read = JSON.parse(responseText); 
+                console.log(read)
                 console.log("Average rating for " + pname + "is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews."); 
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
