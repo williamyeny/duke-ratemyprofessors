@@ -14,21 +14,25 @@ $(function() {
         pspans.each(function(index) {
           //get professor name(s)
           var pname = $(this).text();
-          console.info("drmp: professor name: " + pname);
+          var pname_list = pname.split(" "); 
+          console.info("drmp: professor first-name: " + pname_list[0] + " last-name: " + pname_list[pname_list.length-1]);
+
+
 
           //check if professor is already rated
           if (!$(this).is('[rated]')) {
             //modify professor name(s)
 
-            var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+            var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + pname_list[0] + "+" + pname_list[pname_list.length-1] + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+            // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             chrome.runtime.sendMessage({
                 method: 'GET',
                 action: 'xhttp',
                 url: url,
             }, function(responseText) {
                 console.log(responseText);
-                JSON.parse(responseText); 
-                alert(responseText['response']['docs']['averageratingscore_rf'])
+                // JSON.parse(responseText); 
+                // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
             //tag element as "rated" so it does not infinite loop when a rating is added
             $(this).attr("rated", "");
