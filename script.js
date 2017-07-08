@@ -14,10 +14,10 @@ $(function() {
         pspans.each(function(index) {
           //get professor name(s)
           var pname = $(this).text();
-          var pname_list = pname.split(" "); 
-          var first_name =  pname_list[0]; 
-          var last_name = pname_list[pname_list.length-1]; 
-          // what are best practices here? Should these be stored as variables?^ 
+          var pname_list = pname.split(" ");
+          var first_name =  pname_list[0];
+          var last_name = pname_list[pname_list.length-1];
+          // what are best practices here? Should these be stored as variables?^
           console.info("drmp: professor first-name: " + first_name + " last-name: " + last_name);
 
 
@@ -25,24 +25,24 @@ $(function() {
           if (!$(this).is('[rated]')) {
             //modify professor name(s)
 
+            var span = this;
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
-            var output; 
             chrome.runtime.sendMessage({
                 method: 'GET',
                 action: 'xhttp',
                 url: url,
             }, function(responseText) {
                 console.log(responseText);
-                var read = JSON.parse(responseText); 
+                var read = JSON.parse(responseText);
                 console.log(read)
-                output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
-                console.log(output) 
+                var output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
+                console.log(output)
+
+                writeToProfSpan(span, output);
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
-            //tag element as "rated" so it does not infinite loop when a rating is added
-            $(this).attr("rated", "");
-            $(this).append(output);
+
           } else {
             console.info("drmp: there\'s already a rating!");
           }
@@ -64,3 +64,7 @@ $(function() {
   });
 
 })
+
+function writeToProfSpan(span, output) {
+  $(span).append(output);
+}
