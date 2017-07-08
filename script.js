@@ -27,6 +27,7 @@ $(function() {
 
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+            var output; 
             chrome.runtime.sendMessage({
                 method: 'GET',
                 action: 'xhttp',
@@ -35,7 +36,7 @@ $(function() {
                 console.log(responseText);
                 var read = JSON.parse(responseText); 
                 console.log(read)
-                var output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
+                output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
                 console.log(output) 
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
