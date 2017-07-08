@@ -15,7 +15,10 @@ $(function() {
           //get professor name(s)
           var pname = $(this).text();
           var pname_list = pname.split(" "); 
-          console.info("drmp: professor first-name: " + pname_list[0] + " last-name: " + pname_list[pname_list.length-1]);
+          var firstname =  pname_list[0]; 
+          var lastname = pname_list[pname_list.length-1]; 
+          // what are best practices here? Should these be stored as variables?^ 
+          console.info("drmp: professor first-name: " + firstname + " last-name: " + lastname);
 
 
 
@@ -23,7 +26,7 @@ $(function() {
           if (!$(this).is('[rated]')) {
             //modify professor name(s)
 
-            var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + pname_list[0] + "+" + pname_list[pname_list.length-1] + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+            var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + firstname + "+" + lastname + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             chrome.runtime.sendMessage({
                 method: 'GET',
@@ -31,7 +34,8 @@ $(function() {
                 url: url,
             }, function(responseText) {
                 console.log(responseText);
-                // JSON.parse(responseText); 
+                JSON.parse(responseText); 
+                console.log(responseText.response.docs[0].averageratingscore_rf); 
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
             //tag element as "rated" so it does not infinite loop when a rating is added
