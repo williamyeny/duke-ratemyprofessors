@@ -9,15 +9,15 @@
 }
 
 .color-red {
-  background-color: red;
+  background-color: #e01743;
 }
 
 .color-yellow {
-  background-color:yellow;
+  background-color: #f7cc1e;
 }
 
 .color-green {
-  background-color: green;
+  background-color: #b2cf37;
 }
 
 .not-found {
@@ -26,7 +26,7 @@
 
 .prof-wrapper {
   position:relative;
-  overflow: auto;
+  overflow: hidden;
   height:100%;
 }
 
