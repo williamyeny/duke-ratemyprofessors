@@ -4,6 +4,7 @@ $(function() {
   //ptifrmtgtframe: ID of the iframe holding the courses
   $("#ptifrmtgtframe").on("load", function() {
     console.info("drmp: iframe loaded");
+    var observing = true;
     var observer = new MutationObserver(function(mutations) {
 
       mutations.forEach(function(mutation) {
@@ -11,18 +12,18 @@ $(function() {
 
         //loop through spans with professor name(s)
         var pspans = $("#ptifrmtgtframe").contents().find("span[id*='DU_DERIVED_SS_DESCR100_2']");
-        pspans.each(function(index) {
-          //get professor name(s)
-          var pname = $(this).text();
+        console.info("pspan length: " + pspans.length);
+        if (pspans.length > 0 && observing) {
+          observing = false;
+          pspans.each(function(index) {
+            //get professor name(s)
+            var pname = $(this).text();
 
-          //modify professor name(s)
-          var pname_list = pname.split(" ");
-          var first_name =  pname_list[0];
-          var last_name = pname_list[pname_list.length-1];
-          console.info("drmp: professor first-name: " + first_name + " last-name: " + last_name);
-
-          //check if professor is already rated
-          if (!$(this).is('[rated]')) {
+            //modify professor name(s)
+            var pname_list = pname.split(" ");
+            var first_name =  pname_list[0];
+            var last_name = pname_list[pname_list.length-1];
+            console.info("drmp: professor first-name: " + first_name + " last-name: " + last_name);
 
             var span = $(this);
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
@@ -41,13 +42,14 @@ $(function() {
                 //inject to HTML
                 span.append(output);
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
+
             });
+            setTimeout(function() {
+              observing = true;
+            }, 300);
+          });
+        }
 
-          } else {
-            console.info("drmp: there\'s already a rating!");
-          }
-
-        });
 
         //prevent duplicate mutation detections
         return false;
