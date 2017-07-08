@@ -38,7 +38,8 @@ $(function() {
                 var output = "Average rating for " + pname + " is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews.";
                 console.log(output)
 
-                writeToProfSpan(span, output);
+                //inject to HTML
+                $(span).append(output);
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
 
@@ -63,7 +64,3 @@ $(function() {
   });
 
 })
-
-function writeToProfSpan(span, output) {
-  $(span).append(output);
-}
