@@ -66,7 +66,7 @@ $(function() {
             });
             setTimeout(function() {
               observing = true;
-            }, 500);
+            }, 1000);
           });
         }
 
