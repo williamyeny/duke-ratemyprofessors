@@ -34,8 +34,8 @@ $(function() {
                 url: url,
             }, function(responseText) {
                 console.log(responseText);
-                JSON.parse(responseText); 
-                console.log("Average rating for " + pname + "is " + responseText.response.docs[0].averageratingscore_rf + " from " + responseText.response.docs[0].total_number_of_ratings_i + " reviews."); 
+                var read = JSON.parse(responseText); 
+                console.log("Average rating for " + pname + "is " + read.response.docs[0].averageratingscore_rf + " from " + read.response.docs[0].total_number_of_ratings_i + " reviews."); 
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
             //tag element as "rated" so it does not infinite loop when a rating is added
