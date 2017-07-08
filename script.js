@@ -14,16 +14,15 @@ $(function() {
         pspans.each(function(index) {
           //get professor name(s)
           var pname = $(this).text();
+
+          //modify professor name(s)
           var pname_list = pname.split(" ");
           var first_name =  pname_list[0];
           var last_name = pname_list[pname_list.length-1];
-          // what are best practices here? Should these be stored as variables?^
           console.info("drmp: professor first-name: " + first_name + " last-name: " + last_name);
-
 
           //check if professor is already rated
           if (!$(this).is('[rated]')) {
-            //modify professor name(s)
 
             var span = this;
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
