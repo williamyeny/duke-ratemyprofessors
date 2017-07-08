@@ -1,7 +1,11 @@
 .rating {
   color:white;
   font-weight: 800;
-  padding:3px;
+  width:12px;
+  height:10px;
+  position:absolute;
+  right:2px;
+  bottom:2px;
 }
 
 .color-red {
@@ -20,6 +24,12 @@
   background-color:grey;
 }
 
-body {
-  background-color:black;
+.prof-wrapper {
+  position:relative;
+  overflow: auto;
+  height:100%;
+}
+
+td {
+  height:100%;
 }

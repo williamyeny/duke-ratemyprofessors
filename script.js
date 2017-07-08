@@ -38,6 +38,7 @@ $(function() {
               console.log(read);
 
               var rating_html;
+              var rating_output;
               //check if professor exists on rmp
               if (read.response.docs.length > 0) {
                 //get rating
@@ -54,12 +55,16 @@ $(function() {
                   color="red";
                 }
 
-                rating_html = "<span class='rating color-" + color + "'>" + rating + "</span>"
+                rating_output = "class='rating color-" + color + "'>" + rating;
               } else {
-                rating_html = "<span class='rating not-found'>?</span>"
+                rating_output = "class='rating not-found'>?";
               }
+              //add rest of html
+              rating_html = "<div class='prof-wrapper'><div " + rating_output + "</div></div>"
               //inject to HTML
-              span.append(" " + rating_html);
+              span.parent().after(rating_html); //puts it into td
+              //move span to wrapper
+              span.prependTo(span.parent().parent().children(".prof-wrapper"));
 
               // alert(responseText['response']['docs']['averageratingscore_rf'])
 
