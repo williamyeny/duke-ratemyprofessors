@@ -24,7 +24,7 @@ $(function() {
           //check if professor is already rated
           if (!$(this).is('[rated]')) {
 
-            var span = this;
+            var span = $(this);
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             chrome.runtime.sendMessage({
@@ -39,7 +39,7 @@ $(function() {
                 console.log(output)
 
                 //inject to HTML
-                $(span).append(output);
+                span.append(output);
                 // alert(responseText['response']['docs']['averageratingscore_rf'])
             });
 
