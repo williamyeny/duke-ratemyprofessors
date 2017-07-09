@@ -20,12 +20,13 @@ $(function() {
             var pname = $(this).text();
             //modify professor name(s)
             // check if course has two instructors- DukeHub puts a dash in between, thank god
+            var pname_list
             if (pname.indexOf("-") > -1) {
               var pnames = pname.split("-");
-              var pname_list = pnames[0].split(" ");
+              pname_list = pnames[0].split(" ");
               // need to figure out how to make API calls and injections for both professors? For now, we just get rating for the first (primary) instructor.
             } else {
-              var pname_list = pname.split(" ");
+              pname_list = pname.split(" ");
             }
             var first_name =  pname_list[0];
             var last_name = pname_list[pname_list.length-1];
