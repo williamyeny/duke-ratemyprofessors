@@ -35,7 +35,6 @@ $(function() {
 
             var span = $(this);
             var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
-            // original: var url = "http://search.mtvnservices.com/typeahead/suggest/?q=connel+fullenkamp+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
             chrome.runtime.sendMessage({
               method: 'GET',
               action: 'xhttp',
@@ -76,8 +75,6 @@ $(function() {
               span.parent().after(rating_html); //puts it into td
               //move span to wrapper
               span.prependTo(span.parent().parent().children(".prof-wrapper"));
-
-              // alert(responseText['response']['docs']['averageratingscore_rf'])
 
             });
             setTimeout(function() {
