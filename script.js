@@ -78,9 +78,6 @@ $(function() {
           });
         }
 
-
-        //prevent duplicate mutation detections
-        return false;
       });
     });
 
