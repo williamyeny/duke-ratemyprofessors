@@ -11,7 +11,6 @@ $(function() {
 
         //loop through spans with professor name(s)
         var pspans = $("#ptifrmtgtframe").contents().find("span[id*='DU_DERIVED_SS_DESCR100_2']");
-        console.info("pspan length: " + pspans.length);
         if (pspans.length > 0) {
           pspans.each(function(index) {
             //get professor name(s)
@@ -38,9 +37,7 @@ $(function() {
               action: 'xhttp',
               url: url,
             }, function(responseText) {
-              console.log(responseText);
               var read = JSON.parse(responseText);
-              console.log(read);
 
               var rating_html;
               var rating_output;
@@ -48,7 +45,6 @@ $(function() {
               if (read.response.docs.length > 0) {
                 //get rating
                 var rating = read.response.docs[0].averageratingscore_rf;
-                console.log(rating);
 
                 //determine color based on rating
                 var color;
