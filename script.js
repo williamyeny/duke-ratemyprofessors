@@ -56,7 +56,11 @@ $(function() {
                 }
 
                 rating_output = "class='rating color-" + color + "'>" + rating;
-              } else {
+              } else if (pname == "Departmental Staff") { 
+                rating_output = null;
+              }
+
+              else {
                 rating_output = "class='rating not-found'>?";
               }
               //add rest of html
