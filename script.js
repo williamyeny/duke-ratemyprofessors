@@ -4,7 +4,6 @@ $(function() {
   //ptifrmtgtframe: ID of the iframe holding the courses
   $("#ptifrmtgtframe").on("load", function() {
     console.info("drmp: iframe loaded");
-    var observing = true;
     var observer = new MutationObserver(function(mutations) {
 
       mutations.forEach(function(mutation) {
@@ -13,8 +12,7 @@ $(function() {
         //loop through spans with professor name(s)
         var pspans = $("#ptifrmtgtframe").contents().find("span[id*='DU_DERIVED_SS_DESCR100_2']");
         console.info("pspan length: " + pspans.length);
-        if (pspans.length > 0 && observing) {
-          observing = false;
+        if (pspans.length > 0) {
           pspans.each(function(index) {
             //get professor name(s)
             var pname = $(this).text();
@@ -77,9 +75,6 @@ $(function() {
               span.prependTo(span.parent().parent().children(".prof-wrapper"));
 
             });
-            setTimeout(function() {
-              observing = true;
-            }, 1000);
           });
         }
 
