@@ -10,6 +10,7 @@ $(function() {
         //go through each element that was changed
         mutation.addedNodes.forEach(function(node) {
           if (node.nodeName == "TABLE") {
+            console.info("drmp: table modified");
             //loop through spans with professor name(s)
             var pspans = $("#ptifrmtgtframe").contents().find("span[id*='DU_DERIVED_SS_DESCR100_2']");
             if (pspans.length > 0) {
@@ -28,7 +29,7 @@ $(function() {
                 }
                 var first_name =  pname_list[0];
                 var last_name = pname_list[pname_list.length-1];
-                console.info("drmp: professor first-name: " + first_name + " last-name: " + last_name);
+                console.info("drmp: professor first name: " + first_name + ", last name: " + last_name);
 
 
                 var span = $(this);
