@@ -18,8 +18,9 @@ $(function() {
                 //get professor name(s)
                 var pname = $(this).text();
                 //modify professor name(s)
+
                 // check if course has two instructors- DukeHub puts a dash in between, thank god
-                var pname_list
+                var pname_list;
                 if (pname.indexOf("-") > -1) {
                   var pnames = pname.split("-");
                   pname_list = pnames[0].split(" ");
@@ -27,11 +28,13 @@ $(function() {
                 } else {
                   pname_list = pname.split(" ");
                 }
+
+                //split full name into first and last name for API call
                 var first_name =  pname_list[0];
                 var last_name = pname_list[pname_list.length-1];
                 console.info("drmp: professor first name: " + first_name + ", last name: " + last_name);
 
-
+                //search RMP for professor
                 var span = $(this);
                 var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
                 chrome.runtime.sendMessage({
