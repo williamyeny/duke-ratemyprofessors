@@ -45,9 +45,10 @@ $(function() {
                   var read = JSON.parse(responseText);
 
                   var rating_html;
-                  var rating_output;
+                  var rating_value;
+                  var rating_color;
                   //check if professor exists on rmp
-                  if (read.response.docs.length > 0) {
+                  if (read.response.numFound > 0) {
                     //get rating
                     var rating = read.response.docs[0].averageratingscore_rf;
 
@@ -60,16 +61,19 @@ $(function() {
                     } else {
                       color="red";
                     }
-
+                    rating_value = rating;
+                    rating_color = color;
                     rating_output = "class='rating color-" + color + "'>" + rating;
                   } else if (pname == "Departmental Staff") {
-                    rating_output = null;
+                    rating_value = "";
+                    rating_color = "grey";
                   }
                   else {
-                    rating_output = "class='rating not-found'>?";
+                    rating_value = "?";
+                    rating_color = "grey";
                   }
                   //add rest of html
-                  rating_html = "<div class='prof-wrapper'><div " + rating_output + "</div></div>"
+                  rating_html = "<div class='prof-wrapper'><div class='color-" + rating_color + " rating'>" + rating_value + "</div></div>";
                   //inject to HTML
                   span.parent().after(rating_html); //puts it into td
                   //move span to wrapper
