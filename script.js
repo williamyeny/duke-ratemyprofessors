@@ -63,7 +63,6 @@ $(function() {
                     }
                     rating_value = rating;
                     rating_color = color;
-                    rating_output = "class='rating color-" + color + "'>" + rating;
                   } else if (pname == "Departmental Staff") {
                     rating_value = "";
                     rating_color = "grey";
