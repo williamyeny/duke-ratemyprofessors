@@ -11,11 +11,11 @@
 
 .rating:hover {
 opacity: .7; 
-    -webkit-transition: opacity .15s ease-in-out;
-    -moz-transition: opactiy .15s ease-in-out;
-    -ms-transition: opacity .15s ease-in-out;
-    -o-transition: opacity .15s ease-in-out;
-    transition: opacity .15s ease-in-out;
+-webkit-transition: opacity .15s ease-in-out;
+-moz-transition: opactiy .15s ease-in-out;
+-ms-transition: opacity .15s ease-in-out;
+-o-transition: opacity .15s ease-in-out;
+transition: opacity .15s ease-in-out;
 } 
 
 
