@@ -49,7 +49,7 @@ $(function() {
                   var ratingColor;
                   var ratingLink;
                   //check if professor exists on rmp
-                  if (read.response.numFound > 0) {
+                  if (read.response.numFound > 0 && read.response.docs[0].total_number_of_ratings_i > 0) {
                     //get rating info
                     var rating = read.response.docs[0].averageratingscore_rf;
                     ratingLink = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=" + read.response.docs[0].pk_id;
