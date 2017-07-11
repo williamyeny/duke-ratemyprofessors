@@ -13,3 +13,4 @@ Links
 Class Examples 
 1. EGR 103 for suffixes (II)
 2. BCS 768: RELIGION, RACE, REL: FILM for both N/A and ? 
+3. Biochem 393 for Reds 
