@@ -64,15 +64,14 @@ $(function() {
                     }
                     ratingValue = rating;
                     ratingColor = color;
-                  } else if (pname == "Departmental Staff") {
-                    ratingValue = "";
-                    ratingColor = "grey";
-                    ratingLink = "javascript:void(0)";
-                  }
-                  else {
+                  } else {
                     ratingValue = "?";
                     ratingColor = "grey";
                     ratingLink = "javascript:void(0)";
+
+                    if (pname === "Departmental Staff") {
+                      ratingValue = "N/A";
+                    }
                   }
                   //add rest of html
                   ratingHtml = "<div class='prof-wrapper'><a href='" + ratingLink + "' class='color-" + ratingColor + " rating'>" + ratingValue + "</a></div>";
