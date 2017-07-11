@@ -14,11 +14,14 @@
 }
 
 .color-yellow {
-  background-color: #f7cc1e;
+  /*background-color: #f7cc1e;*/
+  background-color: #EFC400;
+
 }
 
 .color-green {
-  background-color: #b2cf37;
+  /*background-color: #b2cf37;*/
+  background-color: #2eb82e;
 }
 
 .color-grey {
