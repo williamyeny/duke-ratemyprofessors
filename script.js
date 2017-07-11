@@ -31,7 +31,12 @@ $(function() {
 
                 //split full name into first and last name for API call
                 var firstName =  pnameSplit[0];
-                var lastName = pnameSplit[pnameSplit.length-1];
+                var lastName = pnameSplit[pnameSplit.length - 1];
+                // fix for suffixes
+                if (['I', 'II', 'III', 'IV', 'V', 'Jr.', 'Sr.', 'Phd.'].indexOf(lastName) > -1) { 
+                  lastName = pnameSplit[pnameSplit.length - 2]; 
+                }
+
                 console.info("drmp: professor first name: " + firstName + ", last name: " + lastName);
 
                 //search RMP for professor
