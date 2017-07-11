@@ -20,23 +20,23 @@ $(function() {
                 //modify professor name(s)
 
                 // check if course has two instructors- DukeHub puts a dash in between, thank god
-                var pname_list;
+                var pnameSplit;
                 if (pname.indexOf("-") > -1) {
                   var pnames = pname.split("-");
-                  pname_list = pnames[0].split(" ");
+                  pnameSplit = pnames[0].split(" ");
                   // need to figure out how to make API calls and injections for both professors? For now, we just get rating for the first (primary) instructor.
                 } else {
-                  pname_list = pname.split(" ");
+                  pnameSplit = pname.split(" ");
                 }
 
                 //split full name into first and last name for API call
-                var first_name =  pname_list[0];
-                var last_name = pname_list[pname_list.length-1];
-                console.info("drmp: professor first name: " + first_name + ", last name: " + last_name);
+                var firstName =  pnameSplit[0];
+                var lastName = pnameSplit[pnameSplit.length-1];
+                console.info("drmp: professor first name: " + firstName + ", last name: " + lastName);
 
                 //search RMP for professor
                 var span = $(this);
-                var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + first_name + "+" + last_name + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+                var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + firstName + "+" + lastName + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
                 chrome.runtime.sendMessage({
                   method: 'GET',
                   action: 'xhttp',
@@ -44,9 +44,9 @@ $(function() {
                 }, function(responseText) {
                   var read = JSON.parse(responseText);
 
-                  var rating_html;
-                  var rating_value;
-                  var rating_color;
+                  var ratingHtml;
+                  var ratingValue;
+                  var ratingColor;
                   //check if professor exists on rmp
                   if (read.response.numFound > 0) {
                     //get rating
@@ -61,20 +61,20 @@ $(function() {
                     } else {
                       color="red";
                     }
-                    rating_value = rating;
-                    rating_color = color;
+                    ratingValue = rating;
+                    ratingColor = color;
                   } else if (pname == "Departmental Staff") {
-                    rating_value = "";
-                    rating_color = "grey";
+                    ratingValue = "";
+                    ratingColor = "grey";
                   }
                   else {
-                    rating_value = "?";
-                    rating_color = "grey";
+                    ratingValue = "?";
+                    ratingColor = "grey";
                   }
                   //add rest of html
-                  rating_html = "<div class='prof-wrapper'><div class='color-" + rating_color + " rating'>" + rating_value + "</div></div>";
+                  ratingHtml = "<div class='prof-wrapper'><div class='color-" + ratingColor + " rating'>" + ratingValue + "</div></div>";
                   //inject to HTML
-                  span.parent().after(rating_html); //puts it into td
+                  span.parent().after(ratingHtml); //puts it into td
                   //move span to wrapper
                   span.prependTo(span.parent().parent().children(".prof-wrapper"));
 
