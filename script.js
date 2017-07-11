@@ -36,7 +36,7 @@ $(function() {
 
                 //search RMP for professor
                 var span = $(this);
-                var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + firstName + "+" + lastName + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf"
+                var url = "http://search.mtvnservices.com/typeahead/suggest/?q=" + firstName + "+" + lastName + "+AND+schoolid_s%3A1350&siteName=rmp&fl=teacherfirstname_t+teacherlastname_t+total_number_of_ratings_i+averageratingscore_rf+pk_id"
                 chrome.runtime.sendMessage({
                   method: 'GET',
                   action: 'xhttp',
@@ -47,11 +47,12 @@ $(function() {
                   var ratingHtml;
                   var ratingValue;
                   var ratingColor;
+                  var ratingLink;
                   //check if professor exists on rmp
                   if (read.response.numFound > 0) {
-                    //get rating
+                    //get rating info
                     var rating = read.response.docs[0].averageratingscore_rf;
-
+                    ratingLink = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=" + read.response.docs[0].pk_id;
                     //determine color based on rating
                     var color;
                     if (rating > 3.4) {
@@ -66,13 +67,15 @@ $(function() {
                   } else if (pname == "Departmental Staff") {
                     ratingValue = "";
                     ratingColor = "grey";
+                    ratingLink = "javascript:void(0)";
                   }
                   else {
                     ratingValue = "?";
                     ratingColor = "grey";
+                    ratingLink = "javascript:void(0)";
                   }
                   //add rest of html
-                  ratingHtml = "<div class='prof-wrapper'><div class='color-" + ratingColor + " rating'>" + ratingValue + "</div></div>";
+                  ratingHtml = "<div class='prof-wrapper'><a href='" + ratingLink + "' class='color-" + ratingColor + " rating'>" + ratingValue + "</a></div>";
                   //inject to HTML
                   span.parent().after(ratingHtml); //puts it into td
                   //move span to wrapper
