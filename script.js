@@ -74,7 +74,7 @@ $(function() {
                     }
                   }
                   //add rest of html
-                  ratingHtml = "<div class='prof-wrapper'><a href='" + ratingLink + "' class='color-" + ratingColor + " rating'>" + ratingValue + "</a></div>";
+                  ratingHtml = "<div class='prof-wrapper'><a target='_blank' href='" + ratingLink + "' class='color-" + ratingColor + " rating'>" + ratingValue + "</a></div>";
                   //inject to HTML
                   span.parent().after(ratingHtml); //puts it into td
                   //move span to wrapper
