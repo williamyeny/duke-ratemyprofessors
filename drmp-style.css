@@ -1,6 +1,7 @@
 .rating {
   color:white;
-  font-weight: 800;
+  font-weight: 600;
+  /*was 800*/
   position:absolute;
   right:2px;
   bottom:2px;
