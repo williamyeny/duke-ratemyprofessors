@@ -8,3 +8,8 @@ Links
 5. https://carl-topham.com/theblog/post/creating-chrome-extension-uses-jquery-manipulate-dom-page/
 6. http://tech-blog.tomchambers.me/2016/01/13/How-to-write-a-simple-page-rewriting-Chrome-extension/
 7. https://stackoverflow.com/questions/7699615/cross-domain-xmlhttprequest-using-background-pages
+
+
+Class Examples 
+1. EGR 103 for suffixes (II)
+2. BCS 768: RELIGION, RACE, REL: FILM for both N/A and ? 
