@@ -7,5 +7,6 @@ Rate My Duke Professors is a Chrome browser extension that allows you to neatly 
 
 Made by Will and Shamikh 
 
+# Notice
 
-
+This is no longer in development due to a cease and desist from RMP
